@@ -1,0 +1,17 @@
+{
+  "halls": [
+    {"id": 1, "name": "Главный зал", "capacity": 80, "hall_type": "Универсальный", "description": "Крупные тематические выставки"},
+    {"id": 2, "name": "Малая галерея", "capacity": 25, "hall_type": "Галерея", "description": "Живопись и графика"},
+    {"id": 3, "name": "Исторический зал", "capacity": 40, "hall_type": "Исторический", "description": "Археология и история города"}
+  ],
+  "curators": [
+    {"id": 1, "name": "Анна Соколова", "email": "anna@example.com"},
+    {"id": 2, "name": "Иван Петров", "email": "ivan@example.com"}
+  ],
+  "exhibitions": [
+    {"id": 1, "title": "История нашего города", "hall_id": 1, "curator_id": 1, "start_date": "2026-11-01", "end_date": "2026-11-15", "description": "Учебные демонстрационные данные", "is_cancelled": false},
+    {"id": 2, "title": "Осенние пейзажи", "hall_id": 2, "curator_id": 2, "start_date": "2026-11-05", "end_date": "2026-11-25", "description": "Картины местных художников", "is_cancelled": false},
+    {"id": 3, "title": "Древние ремесла", "hall_id": 3, "curator_id": 1, "start_date": "2026-11-01", "end_date": "2026-11-10", "description": "Пример отмененной выставки", "is_cancelled": true},
+    {"id": 4, "title": "Зимний город", "hall_id": 1, "curator_id": 2, "start_date": "2026-12-01", "end_date": "2026-12-20", "description": "Фотографическая выставка", "is_cancelled": false}
+  ]
+}
