@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Статистика · Музей{% endblock %}
+{% block content %}
+<p class="eyebrow">ОБЗОР ПРОГРАММЫ</p>
+<h1>Музей в цифрах</h1>
+<section class="metrics">
+<div>
+<strong>{{ exhibitions.count }}</strong>
+<span>всего выставок</span>
+</div>
+<div>
+<strong>{{ exhibitions.active }}</strong>
+<span>не отменено</span>
+</div>
+<div>
+<strong>{{ exhibitions.cancelled }}</strong>
+<span>отменено</span>
+</div>
+</section>
+<h2>Выставки по залам</h2>
+<p class="muted">Неотмененные выставки за все периоды.</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Зал</th>
+<th>Выставок</th>
+</tr>
+</thead>
+<tbody>
+{% for row in by_hall %}
+<tr>
+<td>{{ row.name }}</td>
+<td>{{ row.count }}</td>
+</tr>
+{% empty %}
+<tr>
+<td colspan="2">Нет данных</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<h2>Программа кураторов</h2>
+<form class="filter">
+<label>Минимум выставок<input type="number" min="0" name="minimum" value="{{ minimum }}">
+</label>
+<button class="button">Применить</button>
+</form>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Куратор</th>
+<th>Выставок</th>
+</tr>
+</thead>
+<tbody>
+{% for row in by_curator %}
+<tr>
+<td>{{ row.name }}</td>
+<td>{{ row.count }}</td>
+</tr>
+{% empty %}
+<tr>
+<td colspan="2">По этому условию кураторов нет.</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<div class="panel">
+<h2>Вместимость и полнота каталога</h2>
+<p>Залов: {{ halls.count }}. Общая вместимость: {{ halls.total }} человек.</p>
+<p>Средняя: {{ halls.average|floatformat:1 }}; минимальная: {{ halls.minimum }}; максимальная: {{ halls.maximum }}.</p>
+<p>Выставок без описания: {{ missing }}.</p>
+</div>
+{% endblock %}

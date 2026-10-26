@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Выставки · Музей{% endblock %}
+{% block content %}
+<p class="eyebrow">ПРОГРАММА МУЗЕЯ</p>
+<h1>Выставки</h1>
+<p class="lead">Планы и история выставочной программы, включая отмененные события.</p>
+<form class="filter" method="get">
+<label class="grow">Название выставки<input type="search" name="q" value="{{ q }}" placeholder="Например, история города">
+</label>
+<button class="button">Найти ↗</button>
+</form>
+<div class="grid">
+{% for item in items %}{% include 'includes/exhibition_card.html' %}{% empty %}
+<p class="empty">Выставок не найдено. Измените поисковый запрос.</p>
+{% endfor %}
+</div>
+<div class="actions">
+{% if previous %}
+<a href="?q={{ q|urlencode }}&amp;page={{ previous }}">← Назад</a>
+{% endif %}{% if following %}
+<a href="?q={{ q|urlencode }}&amp;page={{ following }}">Далее →</a>
+{% endif %}
+</div>
+{% endblock %}

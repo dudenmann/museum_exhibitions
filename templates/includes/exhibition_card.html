@@ -1,0 +1,16 @@
+<article class="card exhibition-card">
+  <div class="card-top">
+<span class="eyebrow">ВЫСТАВКА / {{ item.id|stringformat:'02d' }}</span>
+<span class="badge {% if item.is_cancelled %}cancelled{% endif %}">
+{% if item.is_cancelled %}Отменена{% else %}В программе{% endif %}
+</span>
+</div>
+  <h3>
+<a href="{% url 'exhibitions:detail' item.id %}">{{ item.title }}</a>
+</h3>
+  <p>{{ item.description|default:'Описание пока не добавлено'|truncatechars:110 }}</p>
+  <div class="card-bottom">
+<span>{{ item.start_date|date:'d.m.Y' }} — {{ item.end_date|date:'d.m.Y' }}</span>
+<a aria-label="Открыть {{ item.title }}" href="{% url 'exhibitions:detail' item.id %}">↗</a>
+</div>
+</article>

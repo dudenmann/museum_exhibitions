@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Управление · Музей{% endblock %}
+{% block content %}
+<p class="eyebrow">РАБОЧЕЕ ПРОСТРАНСТВО</p>
+<h1>Новая выставка</h1>
+<p class="lead">Назначьте зал, куратора и даты. Проверим, свободно ли пространство.</p>
+<form class="panel form-stack" data-api-form action="{% url 'api:exhibitions' %}">
+{% csrf_token %}
+<label>Название<input name="title" maxlength="200" required>
+</label>
+<label>Зал<select name="hall_id" required>
+{% for hall in halls %}
+<option value="{{ hall.id }}">{{ hall.name }}</option>
+{% endfor %}
+</select>
+</label>
+<label>Куратор<select name="curator_id" required>
+{% for curator in curators %}
+<option value="{{ curator.id }}">{{ curator.name }}</option>
+{% endfor %}
+</select>
+</label>
+<label>Начало<input type="date" name="start_date" required>
+</label>
+<label>Окончание<input type="date" name="end_date" required>
+</label>
+<label>Описание<textarea name="description" maxlength="5000">
+</textarea>
+</label>
+<button class="button">Создать выставку →</button>
+<p class="form-result" role="status" aria-live="polite">
+</p>
+</form>
+<details class="panel extra-form">
+<summary>Добавить новый зал</summary>
+<form class="form-stack" data-api-form action="{% url 'api:halls' %}">
+{% csrf_token %}
+<label>Название<input name="name" required maxlength="200">
+</label>
+<label>Вместимость<input type="number" name="capacity" min="1" required>
+</label>
+<label>Тип<input name="hall_type" maxlength="100">
+</label>
+<label>Описание<textarea name="description" maxlength="5000">
+</textarea>
+</label>
+<button class="button">Добавить зал</button>
+<p class="form-result" role="status">
+</p>
+</form>
+</details>
+<details class="panel extra-form">
+<summary>Добавить куратора</summary>
+<form class="form-stack" data-api-form action="{% url 'api:curators' %}">
+{% csrf_token %}
+<label>ФИО<input name="name" required maxlength="200">
+</label>
+<label>Email<input type="email" name="email" required maxlength="254">
+</label>
+<button class="button">Добавить куратора</button>
+<p class="form-result" role="status">
+</p>
+</form>
+</details>
+{% endblock %}

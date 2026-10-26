@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Вход · Музей{% endblock %}
+{% block content %}
+<p class="eyebrow">РАБОЧЕЕ ПРОСТРАНСТВО</p>
+<h1>Вход для сотрудников</h1>
+<p class="lead">Войдите, чтобы управлять выставочной программой.</p>
+<form method="post" class="panel form-stack">
+{% csrf_token %}{% if error %}
+<p class="error" role="alert">{{ error }}</p>
+{% endif %}
+<label>Логин<input name="username" autocomplete="username" required maxlength="80">
+</label>
+<label>Пароль<input type="password" name="password" autocomplete="current-password" required>
+</label>
+<button class="button">Войти →</button>
+</form>
+{% endblock %}

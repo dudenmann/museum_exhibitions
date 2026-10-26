@@ -1,0 +1,10 @@
+{
+  "requests": 100,
+  "workers": 8,
+  "successful": 100,
+  "elapsed_seconds": 0.904,
+  "requests_per_second": 110.63,
+  "median_ms": 19.15,
+  "p95_ms": 559.88,
+  "scope": "Local smoke load test, not a production capacity estimate"
+}

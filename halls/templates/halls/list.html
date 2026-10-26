@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Залы · Музей{% endblock %}
+{% block content %}
+<p class="eyebrow">ПРОСТРАНСТВА МУЗЕЯ</p>
+<div class="section-heading">
+<h1>Выставочные залы</h1>
+<a class="button" href="{% url 'halls:available' %}">Проверить доступность ↗</a>
+</div>
+<p class="lead">{{ items|length }} залов для вашей выставочной программы.</p>
+<form class="filter">
+<label>Вместимость от<input type="number" name="capacity" min="1" value="{{ capacity }}" placeholder="Количество посетителей">
+</label>
+<button class="button">Подобрать</button>
+</form>
+<div class="grid">
+{% for item in items %}{% include 'includes/hall_card.html' %}{% empty %}
+<p class="empty">Залы пока не добавлены.</p>
+{% endfor %}
+</div>
+{% endblock %}

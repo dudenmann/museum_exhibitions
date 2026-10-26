@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Кураторы · Музей{% endblock %}
+{% block content %}
+<p class="eyebrow">КОМАНДА МУЗЕЯ</p>
+<h1>Кураторы программы</h1>
+<div class="grid">
+{% for item in items %}
+<article class="card">
+<span class="eyebrow">КУРАТОР / {{ item.id }}</span>
+<h3>{{ item.name }}</h3>
+<p>{{ item.email }}</p>
+</article>
+{% empty %}
+<p class="empty">Кураторы пока не добавлены.</p>
+{% endfor %}
+</div>
+{% endblock %}

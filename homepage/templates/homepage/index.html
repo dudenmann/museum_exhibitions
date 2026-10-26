@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+<div>
+<p class="eyebrow">КУЛЬТУРА. ПРОСТРАНСТВО. ПЛАНИРОВАНИЕ.</p>
+<h1>Каждой выставке —<br>
+<em>свое место.</em>
+</h1>
+<p class="lead">Выставки, залы и кураторы в одном пространстве.<br>Планируйте программу музея без пересечений.</p>
+<div class="actions">
+<a class="button" href="{% url 'exhibitions:list' %}">Открыть выставки ↗</a>
+<a class="text-link" href="{% url 'halls:available' %}">Найти свободный зал</a>
+</div>
+</div>
+<div class="hero-art" aria-hidden="true">
+<div class="arch arch-back">
+</div>
+<div class="arch arch-front">
+</div>
+<div class="art-caption">ИСКУССТВО<br>БЫТЬ НА СВОЕМ МЕСТЕ</div>
+<span class="art-number">01—03</span>
+</div>
+</section>
+<section class="metrics" aria-label="Показатели музея">
+<div>
+<strong>{{ exhibition_count }}</strong>
+<span>выставок в учете</span>
+</div>
+<div>
+<strong>{{ hall_count }}</strong>
+<span>выставочных залов</span>
+</div>
+<div>
+<strong>{{ curator_count }}</strong>
+<span>кураторов программы</span>
+</div>
+</section>
+<section>
+<div class="section-heading">
+<div>
+<p class="eyebrow">ПРОГРАММА МУЗЕЯ</p>
+<h2>Выставки в учете</h2>
+</div>
+<a href="{% url 'exhibitions:list' %}">Вся программа ↗</a>
+</div>
+<div class="grid">
+{% for item in items %}{% include 'includes/exhibition_card.html' %}{% empty %}
+<p class="empty">Пока нет выставок.</p>
+{% endfor %}
+</div>
+</section>
+{% endblock %}

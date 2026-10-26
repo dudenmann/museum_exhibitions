@@ -1,0 +1,5 @@
+{
+  "cold_sql_queries": 4,
+  "warm_sql_queries": 0,
+  "cache_ttl_seconds": 30
+}

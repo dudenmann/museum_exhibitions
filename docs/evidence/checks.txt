@@ -1,0 +1,6 @@
+Final verification: 2026-10-25 Europe/Moscow
+python -m pytest -q: 48 passed in 3.01s
+python manage.py check: System check identified no issues (0 silenced).
+python -m flake8 .: exit 0, no findings
+collectstatic --settings=museum_site.deploy: success
+Browser visual inspection: not performed; permission declined.

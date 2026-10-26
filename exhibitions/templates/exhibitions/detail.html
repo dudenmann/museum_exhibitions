@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{{ item.title }} · Музей{% endblock %}
+{% block content %}
+<a class="back" href="{% url 'exhibitions:list' %}">← Все выставки</a>
+<p class="eyebrow">ВЫСТАВКА / {{ item.id }}</p>
+<h1>{{ item.title }}</h1>
+<p class="lead">{{ item.description|default:'Описание пока не добавлено' }}</p>
+<div class="panel">
+<dl>
+<dt>Период проведения</dt>
+<dd>{{ item.start_date|date:'d.m.Y' }} — {{ item.end_date|date:'d.m.Y' }}</dd>
+<dt>Зал</dt>
+<dd>
+<a href="{% url 'halls:detail' hall.id %}">{{ hall.name }}</a>
+</dd>
+<dt>Куратор</dt>
+<dd>{{ curator.name }}</dd>
+<dt>Статус</dt>
+<dd>
+{% if item.is_cancelled %}Отменена{% else %}Не отменена{% endif %}
+</dd>
+</dl>
+</div>
+{% if account.role == 'editor' and not item.is_cancelled %}
+<form class="panel cancel-form" data-cancel-form action="{% url 'api:detail' item.id %}">
+{% csrf_token %}
+<p>Отмена сохранит выставку в истории и освободит зал.</p>
+<button class="button">Отменить выставку</button>
+<p class="form-result" role="status">
+</p>
+</form>
+{% endif %}{% endblock %}

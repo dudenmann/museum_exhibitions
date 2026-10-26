@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Свободные залы · Музей{% endblock %}
+{% block content %}
+<p class="eyebrow">ПЛАНИРОВАНИЕ</p>
+<h1>Место для новой выставки</h1>
+<p class="lead">Выберите период. Покажем залы, свободные во все указанные дни.</p>
+<form class="filter" method="get">
+<label>Начало<input type="date" name="start" value="{{ start }}" required>
+</label>
+<label>Окончание<input type="date" name="end" value="{{ end }}" required>
+</label>
+<button class="button">Найти залы ↗</button>
+</form>
+{% if error %}
+<p class="error" role="alert">{{ error }}</p>
+{% endif %}{% if searched and not error %}
+<h2>Доступные пространства</h2>
+<div class="grid">
+{% for item in items %}{% include 'includes/hall_card.html' %}{% empty %}
+<p class="empty">На этот период свободных залов нет. Попробуйте другие даты.</p>
+{% endfor %}
+</div>
+{% endif %}{% endblock %}

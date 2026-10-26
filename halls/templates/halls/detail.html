@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{ item.name }} · Музей{% endblock %}
+{% block content %}
+<a class="back" href="{% url 'halls:list' %}">← Все залы</a>
+<p class="eyebrow">{{ item.hall_type }}</p>
+<h1>{{ item.name }}</h1>
+<p class="lead">{{ item.description|default:'Описание пока не добавлено' }}</p>
+<div class="panel">
+<h2>Пространство для посетителей</h2>
+<p>Вместимость: {{ item.capacity }} человек.</p>
+<a class="button" href="{% url 'halls:available' %}">Подобрать даты ↗</a>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% load static %}
+<header class="header">
+  <a class="brand" href="{% url 'homepage:index' %}">
+<img src="{% static 'logo.svg' %}" alt="" width="38" height="38">МУЗЕЙ<span>ПРОСТРАНСТВО ВЫСТАВОК</span>
+</a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Меню</button>
+  <nav id="navigation" aria-label="Главная навигация">
+    <a href="{% url 'homepage:index' %}">Обзор</a>
+    <a href="{% url 'exhibitions:list' %}">Выставки</a>
+    <a href="{% url 'halls:list' %}">Залы</a>
+    <a href="{% url 'homepage:curators' %}">Кураторы</a>
+    <a href="{% url 'homepage:statistics' %}">Статистика</a>
+    <a class="nav-action" href="{% url 'halls:available' %}">Подобрать зал ↗</a>
+  </nav>
+</header>
+<div class="account-bar">
+{% if account %}
+<span>{{ account.username }} · {% if account.role == 'editor' %}редактор{% else %}просмотр{% endif %}
+</span>
+{% if account.role == 'editor' %}
+<a href="{% url 'homepage:workspace' %}">+ Добавить выставку</a>
+{% endif %}
+<form method="post" action="{% url 'accounts:logout' %}">
+{% csrf_token %}
+<button class="plain-button">Выйти</button>
+</form>
+{% else %}
+<a href="{% url 'accounts:login' %}">Вход для сотрудников →</a>
+{% endif %}
+</div>

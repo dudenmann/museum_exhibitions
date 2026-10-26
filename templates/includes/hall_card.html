@@ -1,0 +1,11 @@
+<article class="card">
+  <span class="eyebrow">{{ item.hall_type }}</span>
+  <h3>
+<a href="{% url 'halls:detail' item.id %}">{{ item.name }}</a>
+</h3>
+  <p>{{ item.description|default:'Описание пока не добавлено' }}</p>
+  <div class="card-bottom">
+<span>До {{ item.capacity }} посетителей</span>
+<a href="{% url 'halls:detail' item.id %}" aria-label="Открыть {{ item.name }}">↗</a>
+</div>
+</article>

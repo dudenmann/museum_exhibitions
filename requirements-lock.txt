@@ -1,4 +1,6 @@
+asgiref==3.13.0
 colorama==0.4.6
+Django==5.2.18
 flake8==7.4.1
 iniconfig==2.3.1
 mccabe==0.7.0
@@ -8,3 +10,7 @@ pycodestyle==2.15.0
 pyflakes==4.0.3
 Pygments==2.21.0
 pytest==9.1.1
+sqlparse==0.6.0
+tzdata==2026.5
+waitress==3.0.2
+whitenoise==6.12.0
